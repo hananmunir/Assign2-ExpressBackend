@@ -135,10 +135,10 @@ export const deletePost = async (req, res) => {
 
     //to delete image from S3 bucket
     const post = await postDescription.findById(id);
-    deleteFile(post.image);
+   // deleteFile(post.image);
 
     //delete post
-    await postDescription.findByIdAndRemove(id);
+    //await postDescription.findByIdAndRemove(id);
 
     res.status(200).json({ message: "Post Removed" });
   } catch (error) {
