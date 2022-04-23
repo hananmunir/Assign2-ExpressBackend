@@ -16,9 +16,9 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  selectedImages: {
-    type: [String],
-    required: true,
+  image: {
+    type: String,
+    //required: true
   },
   duration: {
     type: Number,
@@ -42,7 +42,11 @@ const postSchema = mongoose.Schema({
     default: true,
   },
 });
-
+// Pre hook for `findOneAndUpdate`
+postSchema.pre("findOneAndUpdate", function (next) {
+  this.options.runValidators = true;
+  next();
+});
 const postDescription = mongoose.model("postDescription", postSchema);
 
 export default postDescription;
